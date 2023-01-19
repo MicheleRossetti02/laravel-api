@@ -28,6 +28,7 @@ class UpdateSongRequest extends FormRequest
             'cover' => 'nullable|image|max:300',
             'category_id' => ['nullable', 'exists:categories,id'],
             'album' => 'nullable|max:400',
+            'technologies' => 'nullable',
             'artist' => 'nullable'
         ];
     }

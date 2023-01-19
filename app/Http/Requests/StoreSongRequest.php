@@ -26,8 +26,9 @@ class StoreSongRequest extends FormRequest
         return [
             'title' => 'required:songs,title|max:100',
             'cover' => 'nullable|image|max:300',
-            'category_id' => 'nullable|exists:categories,id', // 👈 The category id must exist!!
+            'category_id' => 'nullable|exists:categories,id',
             'artist' => 'nullable',
+            'technologies' => 'nullable',
             'album' => 'nullable'
         ];
     }

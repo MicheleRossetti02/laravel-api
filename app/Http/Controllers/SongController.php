@@ -73,10 +73,10 @@ class SongController extends Controller
         // dd($val_data->$cover);
 
         $song = Song::create($val_data);
-        dd($song);
-        // if ($request->has('technologies')) {
-        //     $song->technologies()->attach($val_data['technologies']);
-        // }
+        // dd($val_data);
+        if ($request->has('technologies')) {
+            $song->technologies()->attach($val_data['technologies']);
+        }
         //redirect
         return to_route('admin.songs.index')->with('message', 'You add a great Song!');
     }
