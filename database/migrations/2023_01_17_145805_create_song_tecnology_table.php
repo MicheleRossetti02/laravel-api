@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('song_tecnology', function (Blueprint $table) {
+        Schema::create('song_technology', function (Blueprint $table) {
             $table->unsignedBigInteger('song_id');
             $table->foreign('song_id')->references('id')->on('songs')->cascadeOnDelete();
 
-            $table->unsignedBigInteger('tecnology_id');
-            $table->foreign('tecnology_id')->references('id')->on('technologies')->cascadeOnDelete();
+            $table->unsignedBigInteger('technology_id');
+            $table->foreign('technology_id')->references('id')->on('technologies')->cascadeOnDelete();
 
-            $table->primary('song_id', 'tecnology_id');
+            $table->primary(['song_id', 'technology_id']);
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('song_tecnology');
+        Schema::dropIfExists('song_technology');
     }
 };

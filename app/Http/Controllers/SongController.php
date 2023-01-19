@@ -77,8 +77,9 @@ class SongController extends Controller
         if ($request->has('technologies')) {
             $song->technologies()->attach($val_data['technologies']);
         }
+
         //redirect
-        return to_route('admin.songs.index')->with('message', 'You add a great Song!');
+        return to_route('admin.songs.index')->with('message', " $song->title. You add a great Song!");
     }
 
     /**

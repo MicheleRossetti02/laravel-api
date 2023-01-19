@@ -18,7 +18,7 @@ class TechnologySeeder extends Seeder
     public function run()
     {
         //
-        $technologies = ['iphone', 'tablet', 'android', 'computer'];
+        $technologies = ['itunes', 'spotify', 'youtube', 'deezer'];
 
         foreach ($technologies as $technology) {
             $newTecnology = new Technology();
