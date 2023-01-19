@@ -3,17 +3,18 @@
 
 
 <h1>Add a new Song</h1>
-@if($errors->any())
-<div class="alert alert-success" role="alert">
-    <ul>
-        @foreach($errors->any() as $error)
-        <li>{{$error}}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-
 <form action="{{route('admin.songs.store')}}" method="post" enctype="multipart/form-data">
+    <!-- @if($errors->any())
+    <div class="alert alert-success" role="alert">
+        <ul>
+            @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif -->
+
+
     @csrf
 
     <div class="m-3">
@@ -36,7 +37,7 @@
             <option selected>Select one</option>
 
             @foreach ($categories as $category )
-            <option value="{{$category->name}}" {{ old('category_name') ? 'selected' : '' }}>{{$category->name}}</option>
+            <option value="{{$category->id}}" {{ $category->id == old('category_id') ? 'selected' : '' }}>{{$category->name}}</option>
             @endforeach
 
         </select>
@@ -51,19 +52,19 @@
         <label for="technologies">Technologies</label>
         <select multiple class="custom-select" name="technologies[]" id="technologies">
             <option value="" disabled>Select Technology</option>
-            @forelse($technologies as $technology)
 
-            @if($errors->any())
+            @forelse($technologies as $technology)
             <option value="{{$technology->id}}" {{in_array($technology->id,old('technology',[])) ? 'selected' : ''}}>{{$technology->name}}</option>
-            @else
-            <option value="{{$technology->id}}">{{$technology->name}}</option>
-            @endif
             @empty
             <option value="" disabled>Sorry no Technologies in the system</option>
             @endforelse
 
         </select>
+        @error('technologies')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
+
     <div class="m-3">
         <label for="artist" class="form-label">Artist</label>
         <input type="text" name="artist" id="title" class="form-control" placeholder="Artist">

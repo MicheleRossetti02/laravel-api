@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateSongRequest;
 use App\Models\Category;
 use App\Models\Song;
 use App\Models\Technology;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use illuminate\Support\Str;
 
@@ -35,6 +36,7 @@ class SongController extends Controller
     {
         $categories = Category::all(); //👈 get all categories
         $technologies = Technology::all();
+        // dd(request());
         return view('admin.songs.create', compact('categories', 'technologies'));
     }
 
@@ -50,7 +52,10 @@ class SongController extends Controller
         //validazione dati
         $val_data = $request->validated();
         // dd($val_data);
-
+        if ($request->hasFile('cover')) {
+            $cover = Storage::disk('public')->put('songs_img', $request->cover);
+            $val_data['cover'] = $cover;
+        }
         //generate song slug
         // $song_slug = Str::slug($val_data['title']);
         // dd($song_slug);
@@ -61,15 +66,17 @@ class SongController extends Controller
         //add song
         // dd($val_data);
         // dd($val_data);
+        // dd($val_data->$cover);
 
-        $cover = Storage::disk('public')->put('songs_img', $request->cover);
-        $val_data['cover'] = $cover;
+        $val_data['user_id'] = Auth::id();
 
-        // dd($val_data);
+        // dd($val_data->$cover);
 
-        Song::create($val_data);
-
-        $val_data->technologies()->attach($request->technologies);
+        $song = Song::create($val_data);
+        dd($song);
+        // if ($request->has('technologies')) {
+        //     $song->technologies()->attach($val_data['technologies']);
+        // }
         //redirect
         return to_route('admin.songs.index')->with('message', 'You add a great Song!');
     }

@@ -9,14 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Technology extends Model
 {
     use HasFactory;
+
     /**
      * Get the roles that owns the song
      *
 @return \Illuminate\Database\Eloquent\Relations\BelongsToMany;
      * 
      */
-    public function technologies(): BelongsToMany
+    public function songs(): BelongsToMany
     {
-        return $this->belongsToMany(Technology::class);
+        return $this->belongsToMany(Song::class);
     }
 }

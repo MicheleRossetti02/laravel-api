@@ -19,10 +19,11 @@ class TechnologySeeder extends Seeder
     {
         //
         $technologies = ['iphone', 'tablet', 'android', 'computer'];
+
         foreach ($technologies as $technology) {
             $newTecnology = new Technology();
             $newTecnology->name = $technology;
-            $newTecnology->slug = Str::Slug($newTecnology->title);
+            // $newTecnology->slug = Str::Slug($newTecnology->title);
             $newTecnology->save();
         }
     }
