@@ -21,10 +21,10 @@ class SongController extends Controller
      */
     public function index()
     {
-        $song = Song::orderBy('id')->get();
+        $songs = Song::orderBy('id')->get();
         // $song = Song::orderByCres('id')->get();
         // dd($song);
-        return view('admin.songs.index', compact('song'));
+        return view('admin.songs.index', compact('songs'));
     }
 
     /**

@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         return response()->json([
             'succes' => true,
-            'results' => Song::with(['category', 'technologies'])->orderByDesc('id')->paginate(5)
+            'response' => Song::with(['category', 'technologies'])->orderByDesc('id')->paginate(5)
         ]);
     }
 }
