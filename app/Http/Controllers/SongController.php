@@ -133,7 +133,7 @@ class SongController extends Controller
         // dd($val_data->all());
 
         $song->update($val_data);
-        return to_route('admin.songs.index')->with('message', 'You edit a great Song!');
+        return to_route('admin.songs.index')->with('message', "$song->title. You edit a great Song!");
     }
 
     /**
