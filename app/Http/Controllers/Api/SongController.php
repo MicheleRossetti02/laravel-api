@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Song;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class SongController extends Controller
 {
     public function index()
     {
@@ -15,9 +15,10 @@ class UserController extends Controller
             'response' => Song::with(['category', 'technologies'])->orderBy('id')->paginate(6)
         ]);
     }
-    public function show($song_slug)
+    public function show($slug)
     {
-        $song = Song::with(['category', 'technologies'])->where( 'song_slug',$song_slug);
+        $song = Song::with(['category', 'technologies'])->where( 'slug',$slug)->first();
+        // dd($song);
         if ($song) {
             return response()->json([
                 'success' => true,
@@ -26,7 +27,7 @@ class UserController extends Controller
         } else {
             return response()->json([
                 'success' => false,
-                'results' => '$song not found'
+                'results' => 'song not found'
             ]);
         }
     }
