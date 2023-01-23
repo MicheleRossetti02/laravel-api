@@ -15,4 +15,22 @@ class UserController extends Controller
             'response' => Song::with(['category', 'technologies'])->orderBy('id')->paginate(6)
         ]);
     }
+    public function show($song_slug)
+    {
+        $song = Song::with(['category', 'technologies'])->where( 'song_slug',$song_slug);
+        if ($song) {
+            return response()->json([
+                'success' => true,
+                'results' => $song
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'results' => '$song not found'
+            ]);
+        }
+    }
+
+
+
 }

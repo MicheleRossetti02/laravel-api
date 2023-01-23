@@ -20,7 +20,7 @@ class Song extends Model
 
         $song_slug = Str::slug($title);
         return $song_slug;
-    }
+    } 
 
     /**
      * Get the category that owns the song

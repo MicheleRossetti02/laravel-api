@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/songs', [UserController::class, 'index']);
+Route::get('/songs/{song:song_slug}', [UserController::class, 'show']);
+
