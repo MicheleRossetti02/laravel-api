@@ -15,8 +15,8 @@ class Category extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function songs(): HasMany
+    public function projects(): HasMany
     {
-        return $this->hasMany(Song::class);
+        return $this->hasMany(Project::class);
     }
 }

@@ -12,7 +12,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('admin.songs.index')}}" class="nav-link active">
+                            <a href="{{ route('admin.projects.index') }}" class="nav-link active">
                                 <span class="align-text-bottom"></span>
                                 <i class="fa-solid fa-music"></i>
                                 Music

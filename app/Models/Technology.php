@@ -16,8 +16,8 @@ class Technology extends Model
 @return \Illuminate\Database\Eloquent\Relations\BelongsToMany;
      * 
      */
-    public function songs(): BelongsToMany
+    public function projects(): BelongsToMany
     {
-        return $this->belongsToMany(Song::class);
+        return $this->belongsToMany(Project::class);
     }
 }

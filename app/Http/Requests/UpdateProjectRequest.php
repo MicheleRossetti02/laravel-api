@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSongRequest extends FormRequest
+class UpdateProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,12 @@ class StoreSongRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required:songs,title|max:100',
+            'title' => 'required:title|max:100',
             'cover' => 'nullable|image|max:300',
-            'category_id' => 'nullable|exists:categories,id',
-            'artist' => 'nullable',
+            'category_id' => ['nullable', 'exists:categories,id'],
+            'source_code' => 'nullable|max:400',
             'technologies' => 'nullable',
-            'album' => 'nullable'
+            'project_link' => 'nullable'
         ];
     }
 }

@@ -3,31 +3,31 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Song;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
-class SongController extends Controller
+class ProjectController extends Controller
 {
     public function index()
     {
         return response()->json([
             'succes' => true,
-            'response' => Song::with(['category', 'technologies'])->orderBy('id')->paginate(6)
+            'response' => Project::with(['category', 'technologies'])->orderBy('id')->paginate(6)
         ]);
     }
     public function show($slug)
     {
-        $song = Song::with(['category', 'technologies'])->where( 'slug',$slug)->first();
-        // dd($song);
-        if ($song) {
+        $project = Project::with(['category', 'technologies'])->where( 'slug',$slug)->first();
+        // dd($project);
+        if ($project) {
             return response()->json([
                 'success' => true,
-                'results' => $song
+                'results' => $project
             ]);
         } else {
             return response()->json([
                 'success' => false,
-                'results' => 'song not found'
+                'results' => 'project not found'
             ]);
         }
     }

@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
-class Song extends Model
+class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'album', 'artist', 'slug', 'category_id'];
+    protected $fillable = ['title', 'source_code', 'project_link', 'slug', 'category_id'];
 
     public static function generateSlag($title)
     {

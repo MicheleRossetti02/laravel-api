@@ -17,7 +17,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['hip-pop', 'rap', 'cantautorato', 'latino', 'dance',];
+        $categories = [ 'Front-end', 'Back-end', 'Full-stack'];
 
         foreach ($categories as $category) {
             $newCategory = new Category();

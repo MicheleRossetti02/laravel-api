@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
-    <h1>Songs</h1>
+    <h1>Projects</h1>
     <a name="" id="" class="btn btn-primary position-fixed bottom-0 end-0 "
-        href="{{ route('admin.songs.create') }}" role="button">New Song
+        href="{{ route('admin.projects.create') }}" role="button">New Project
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
     </a>
     @include('partials.message')
@@ -19,43 +19,43 @@
                     <th>ID</th>
                     <th>Cover</th>
                     <th>Title </th>
-                    <th>Album</th>
+                    <th>Source Code</th>
                     <th>Artist</th>
                     <th>Actions</th>
 
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @forelse($songs as $song)
+                @forelse($projects as $project)
                     <tr class="table-primary">
-                        <td scope="row">{{ $song->id }}</td>
+                        <td scope="row">{{ $project->id }}</td>
                         <td scope="row">
 
-                            @if ($song->cover)
-                                <img src="{{ asset('storage/' . $song->cover) }}" alt="">
+                            @if ($project->cover)
+                                <img src="{{ asset('storage/' . $project->cover) }}" alt="">
                             @endif
                         </td>
 
-                        <td>{{ $song->title }}</td>
-                        <td>{{ $song->album }}</td>
-                        <td>{{ $song->artist }}</td>
+                        <td>{{ $project->title }}</td>
+                        <td>{{ $project->source_code }}</td>
+                        <td>{{ $project->project_link }}</td>
                         <td>
                             <!-- show -->
-                            <a href="{{ route('admin.songs.show', $song->slug) }}">
+                            <a href="{{ route('admin.projects.show', $project->slug) }}">
                                 <i class="fas fa-eye fa-sm fa-fw"></i>
                             </a>
                             <!-- edit -->
-                            <a href="{{ route('admin.songs.edit', $song->slug) }}">
+                            <a href="{{ route('admin.projects.edit', $project->slug) }}">
                                 <i class="fas fa-pencil fa-sm fa-fw"></i>
                             </a>
                             <!-- delete -->
-                            <!-- <a href="{{ route('admin.songs.destroy', $song->slug) }}">
-                             @method('DELETE')
-                            <i class="fas fa-trash fa-sm fa-fw"></i>
+                            <!-- <a href="{{ route('admin.projects.destroy', $project->slug) }}">
+                                             @method('DELETE')
+                                            <i class="fas fa-trash fa-sm fa-fw"></i>
 
-                        </a>  -->
+                                        </a>  -->
 
-                            <form action="{{ route('admin.songs.destroy', $song->slug) }}" method="post">
+                            <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="post">
                                 @csrf
                                 @method('DELETE')
 
@@ -63,21 +63,21 @@
 
                                 <!-- Modal trigger button -->
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#delete_song_{{ $song->slug }}">
+                                    data-bs-target="#delete_project_{{ $project->slug }}">
                                     Delete
                                 </button>
 
                                 <!-- Modal Body -->
                                 <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                                <div class="modal fade" id="delete_song_{{ $song->slug }}" tabindex="-1"
+                                <div class="modal fade" id="delete_project_{{ $project->slug }}" tabindex="-1"
                                     data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-                                    aria-labelledby="modalTitleId_{{ $song->slug }}" aria-hidden="true">
+                                    aria-labelledby="modalTitleId_{{ $project->slug }}" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
                                         role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTitleId_{{ $song->slug }}">Delete
-                                                    {{ $song->title }}</h5>
+                                                <h5 class="modal-title" id="modalTitleId_{{ $project->slug }}">Delete
+                                                    {{ $project->title }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -87,7 +87,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary btn-sm"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('admin.songs.destroy', $song->slug) }}"
+                                                <form action="{{ route('admin.projects.destroy', $project->slug) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -110,7 +110,7 @@
                 @empty
 
                     <tr>
-                        <td>No Songs</td>
+                        <td>No Projects</td>
                     </tr>
                 @endforelse
             </tbody>
