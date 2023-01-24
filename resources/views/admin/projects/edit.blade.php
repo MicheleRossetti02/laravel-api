@@ -44,6 +44,30 @@
                         {{ $message }}
                     </div>
                 @enderror
+
+                <div class="mb-3">
+                    <label for="technologies" class="form-label">Technologys</label>
+                    <select multiple class="form-select form-select-sm" name="technologies[]" id="technologies">
+                        <option value="" disabled>Select a technology</option>
+                        @forelse ($technologies as $technology)
+                            @if ($errors->any())
+                                <!-- Pagina con errori di validazione, deve usare old per verificare quale id di technology preselezionare -->
+                                <option value="{{ $technology->id }}"
+                                    {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
+                                    {{ $technology->name }}</option>
+                            @else
+                                <!-- Pagina caricate per la prima volta: deve mostrarare i technology preseleziononati dal db -->
+                                <option value="{{ $technology->id }}"
+                                    {{ $post->technologies->contains($technology->id) ? 'selected' : '' }}>
+                                    {{ $technology->name }}</option>
+                            @endif
+                        @empty
+                            <option value="" disabled>Sorry 😥 no technologies in the system</option>
+                        @endforelse
+
+                    </select>
+                </div>
+
                 <div class="mb-3">
                     <label for="source_code" class="form-label">source_code</label>
                     <input type="text" name="source_code" id="source_code" class="form-control"
