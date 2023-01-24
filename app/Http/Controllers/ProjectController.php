@@ -116,24 +116,43 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
+
+        /* TODO: Allow only the current user to edit a project */
+        // validate data
+        $val_data = $request->validated();
+        //dd($val_data);
+
+        // check if the request has a cover_image field
+        if ($request->hasFile('cover_image')) {
+            // check if the current project has an image if yes, delete it
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+            //dd($cover_image);
+            // replace the value of cover_image inside $val_data
+            $val_data['cover_image'] = $cover_image;
+        }
+        //dd($val_data);
+
+        // update the slug
+        $project_slug = Project::generateSlag($val_data['title']);
+        $val_data['slug'] = $project_slug;
+        //dd($val_data);
+        // update the resource
+        $project->update($val_data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($val_data['technologies']);
+        } else {
+            $project->technologies()->sync([]);
+        }
+        // redirect to a get route
         // dd($request->all());
         //validazione dati
         $val_data = $request->validated();
         // dd($val_data);
 
-        //generate project slug
-        // $project_slug = Str::slug($val_data['title']);
-        // dd($project_slug);
-
-        $project_slug = Project::generateSlag($val_data['title']);
-        // dd($project_slug);
-        $val_data['slug'] = $project_slug;
-        //add project
-        // dd($val_data);
-
-        // dd($val_data->all());
-
-        $project->update($val_data);
         return to_route('admin.projects.index')->with('message', "$project->title. You edit a great Project!");
     }
 

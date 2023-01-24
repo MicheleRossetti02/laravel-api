@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('source_code', 100)->nullable();
-            $table->string('project_link', 100);
+            $table->string('project_link', 100)->nullable();
             $table->timestamps();
         });
     }

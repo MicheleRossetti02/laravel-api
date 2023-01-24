@@ -20,7 +20,7 @@
                     <th>Cover</th>
                     <th>Title </th>
                     <th>Source Code</th>
-                    <th>Artist</th>
+                    <th>Project Link</th>
                     <th>Actions</th>
 
                 </tr>
@@ -50,10 +50,10 @@
                             </a>
                             <!-- delete -->
                             <!-- <a href="{{ route('admin.projects.destroy', $project->slug) }}">
-                                             @method('DELETE')
-                                            <i class="fas fa-trash fa-sm fa-fw"></i>
+                                                 @method('DELETE')
+                                                <i class="fas fa-trash fa-sm fa-fw"></i>
 
-                                        </a>  -->
+                                            </a>  -->
 
                             <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="post">
                                 @csrf
