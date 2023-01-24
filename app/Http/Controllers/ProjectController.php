@@ -102,8 +102,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $categories = Category::all(); //👈 get all categories
+        $technologies = Technology::all();
 
-        return view('admin.projects.edit', compact('project', 'categories'));
+        return view('admin.projects.edit', compact('project', 'categories','technologies'));
     }
 
     /**

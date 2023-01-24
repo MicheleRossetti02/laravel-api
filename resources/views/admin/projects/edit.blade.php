@@ -58,7 +58,7 @@
                             @else
                                 <!-- Pagina caricate per la prima volta: deve mostrarare i technology preseleziononati dal db -->
                                 <option value="{{ $technology->id }}"
-                                    {{ $post->technologies->contains($technology->id) ? 'selected' : '' }}>
+                                    {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>
                                     {{ $technology->name }}</option>
                             @endif
                         @empty
