@@ -6,12 +6,12 @@
     <form action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
         <!-- @if ($errors->any())
     <div class="alert alert-success" role="alert">
-                    <ul>
-                        @foreach ($errors->all() as $error)
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
     <li>{{ $error }}</li>
     @endforeach
-                    </ul>
-                </div>
+                                            </ul>
+                                        </div>
     @endif -->
 
 
@@ -22,15 +22,16 @@
             <input type="text" name="title" id="title" class="form-control" placeholder="Title">
             <small id="titleHelper " class="text-muted"> Add a title for the current project, max 100 characters</small>
         </div>
-        <div class="form-group">
-            <label for="cover">Cover Image</label>
-            <input type="file" class="form-control-file" name="cover" id="cover" placeholder="Add a cover image"
-                aria-describedby="coverImgHelper">
-            <small id="coverImgHelper" class="form-text text-muted">Add a cover image</small>
+
+        <!-- ################# -->
+        <div class="mb-3">
+            <label for="cover_image" class="form-label">Cover Image</label>
+            <input type="file" name="cover_image" id="cover_image"
+                class="form-control  @error('cover_image') is-invalid @enderror" placeholder=""
+                aria-describedby="coverImageHelper" value="{{ old('cover_image') }}">
+            <small id="coverImageHelper" class="text-muted">Add your cover image</small>
         </div>
-        @error('cover')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
+        <!-- ################# -->
 
         <div class="mb-3">
             <label for="category_id" class="form-label">Categories</label>
@@ -71,16 +72,16 @@
         </div>
 
         <div class="m-3">
-            <label for="project_link" class="form-label">Artist</label>
-            <input type="text" name="project_link" id="title" class="form-control" placeholder="Artist">
-            <small id="titleHelper " class="text-muted"> Add the main project_link
+            <label for="project_link" class="form-label">Project Link</label>
+            <input type="text" name="project_link" id="title" class="form-control" placeholder="Project Link">
+            <small id="titleHelper " class="text-muted"> Add the main Project Link
             </small>
 
         </div>
         <div class="m-3">
-            <label for="source_code" class="form-label">Album</label>
-            <input type="text" name="source_code" id="source_code" class="form-control" placeholder="Album">
-            <small id="titleHelper " class="text-muted"> Add the name of the Album</small>
+            <label for="source_code" class="form-label">Source Code</label>
+            <input type="text" name="source_code" id="source_code" class="form-control" placeholder="Source Code">
+            <small id="titleHelper " class="text-muted"> Add the name of the Source Code</small>
         </div>
         <button type="submit" class=" m-3 btn btn-primary">Create</button>
     </form>

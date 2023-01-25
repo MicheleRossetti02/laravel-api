@@ -31,9 +31,14 @@
                         <td scope="row">{{ $project->id }}</td>
                         <td scope="row">
 
-                            @if ($project->cover)
-                                <img src="{{ asset('storage/' . $project->cover) }}" alt="">
+                            @if ($project->cover_image)
+                                <img width="100" class="img-fluid" src="{{ asset('storage/' . $project->cover_image) }}"
+                                    alt="">
+                            @else
+                                <div class="placeholder p-5 bg-secondary d-flex align-items-center justify-content-center"
+                                    style="width:100px">Placeholder</div>
                             @endif
+
                         </td>
 
                         <td>{{ $project->title }}</td>
@@ -50,10 +55,10 @@
                             </a>
                             <!-- delete -->
                             <!-- <a href="{{ route('admin.projects.destroy', $project->slug) }}">
-                                                 @method('DELETE')
-                                                <i class="fas fa-trash fa-sm fa-fw"></i>
+                                                         @method('DELETE')
+                                                        <i class="fas fa-trash fa-sm fa-fw"></i>
 
-                                            </a>  -->
+                                                    </a>  -->
 
                             <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="post">
                                 @csrf

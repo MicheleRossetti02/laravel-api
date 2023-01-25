@@ -13,7 +13,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'source_code', 'project_link', 'slug', 'category_id'];
+    protected $fillable = ['title', 'source_code', 'project_link', 'slug', 'cover_image','category_id'];
 
     public static function generateSlag($title)
     {

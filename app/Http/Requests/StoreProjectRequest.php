@@ -25,7 +25,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'title' => 'required:songs,title|max:100',
-            'cover' => 'nullable|image|max:300',
+            'cover_image' => 'nullable|image',
             'category_id' => 'nullable|exists:categories,id',
             'project_link' => 'nullable',
             'technologies' => 'nullable',

@@ -16,16 +16,23 @@ class ProjectSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        foreach (config('projects.projects') as $project) {
-            $newproject = new Project();
-            $newproject->title = $project['title'];
-            $newproject->slug = Project::generateSlag($newproject->title);
-            // $newproject->slug = $project['slug'];
-            $newproject->source_code = $project['source_code'];
-            $newproject->project_link = $project['project_link'];
-            $newproject->save();
+        for ($i = 0; $i < 10; $i++) {
         }
-    }
+        foreach (config('projects.projects') as $project) {
+            
+                        $newproject = new Project();
+                        $newproject->title = $project['title'];
+                        $newproject->slug = Project::generateSlag($newproject->title);
+                        // $newproject->slug = $project['slug'];
+                        // $project->cover_image = 'placeholders/' . $faker->image('storage/app/public/placeholders', 600, 300, 'Project', false, false);
+                        $newproject->cover_image = 'placeholders/' . $faker->image('storage/app/public/placeholders', 600, 300, 'Project', false, false); //placeholders/sjfdposjadfgpojsdpfo.png
+                        
+                        // $project->cover_image = $project($cover_image);
+                        $newproject->source_code = $project['source_code'];
+                        $newproject->project_link = $project['project_link'];
+                        $newproject->save();
+            }
+        }
 }

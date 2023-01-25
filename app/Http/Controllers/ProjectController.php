@@ -52,9 +52,9 @@ class ProjectController extends Controller
         //validazione dati
         $val_data = $request->validated();
         // dd($val_data);
-        if ($request->hasFile('cover')) {
-            $cover = Storage::disk('public')->put('projects_img', $request->cover);
-            $val_data['cover'] = $cover;
+        if ($request->hasFile('cover_image')) {
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+            $val_data['cover_image'] = $cover_image;
         }
         //generate project slug
         // $project_slug = Str::slug($val_data['title']);
@@ -122,18 +122,18 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         //dd($val_data);
 
+            dd($val_data);
+
         // check if the request has a cover_image field
         if ($request->hasFile('cover_image')) {
-            // check if the current project has an image if yes, delete it
             if ($project->cover_image) {
                 Storage::delete($project->cover_image);
             }
             $cover_image = Storage::put('uploads', $val_data['cover_image']);
-            //dd($cover_image);
-            // replace the value of cover_image inside $val_data
             $val_data['cover_image'] = $cover_image;
-        }
-        //dd($val_data);
+        } 
+
+        // dd($val_data);
 
         // update the slug
         $project_slug = Project::generateSlag($val_data['title']);
@@ -164,6 +164,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->cover_image) {
+            Storage::delete($project->cover_image);
+        }
         $project->delete();
         return to_route('admin.projects.index')->with('message', "you just delete this beautiful project successefully: $project->title");
     }
