@@ -14,6 +14,25 @@
                         aria-describedby="helpId" value="{{ old('title', $project) }}">
                     <small id="helpId" class="text-muted">insert a project title</small>
                 </div>
+
+                <div class="mb-3 d-flex gap-4">
+                    <img width="140" src="{{ asset('storage/' . $project->cover_image) }}" alt="">
+                    <div>
+                        <label for="cover_image" class="form-label">Replace Cover Image</label>
+                        <input type="file" name="cover_image" id="cover_image"
+                            class="form-control  @error('cover_image') is-invalid @enderror" placeholder=""
+                            aria-describedby="coverImageHelper">
+                        <small id="coverImageHelper" class="text-muted">Replace the project cover image</small>
+                    </div>
+                </div>
+                <!-- TODO: Add validation errors -->
+                @error('cover_image')
+                    <div class="alert alert-danger" role="alert">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+
                 <div class="mb-3">
                     <label for="project_link" class="form-label">project_link</label>
                     <input type="text" name="project_link" id="project_link" class="form-control"
