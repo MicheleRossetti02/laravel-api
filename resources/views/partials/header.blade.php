@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <div class="logo">
-                <h3>PARASONG</h3>
+                <h3 class="mt-2">PORTFOLIO</h3>
             </div>
             <!-- {{-- config('app.name', 'Laravel') --}} -->
         </a>

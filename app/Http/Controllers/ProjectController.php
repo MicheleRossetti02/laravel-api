@@ -122,7 +122,7 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         //dd($val_data);
 
-            dd($val_data);
+            // dd($val_data);
 
         // check if the request has a cover_image field
         if ($request->hasFile('cover_image')) {

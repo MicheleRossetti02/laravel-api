@@ -4,7 +4,8 @@
     <section class="py-5">
 
         <div class="container">
-            <form action="{{ route('admin.projects.update', $project->slug) }}" method="post" class="card p-3">
+            <form action="{{ route('admin.projects.update', $project->slug) }}" method="post" enctype="multipart/form-data"
+                class="card p-3">
                 @csrf
                 @method('PUT')
 
