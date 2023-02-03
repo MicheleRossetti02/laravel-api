@@ -2,7 +2,6 @@
 
 @section('content')
     <section class="py-5">
-
         <div class="container">
             <form action="{{ route('admin.projects.update', $project->slug) }}" method="post" enctype="multipart/form-data"
                 class="card p-3">
