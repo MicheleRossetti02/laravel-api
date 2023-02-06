@@ -6,12 +6,12 @@
     <form action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
         <!-- @if ($errors->any())
     <div class="alert alert-success" role="alert">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
     <li>{{ $error }}</li>
     @endforeach
-                                            </ul>
-                                        </div>
+                                                    </ul>
+                                                </div>
     @endif -->
 
 
@@ -78,11 +78,13 @@
             </small>
 
         </div>
-        <div class="m-3">
-            <label for="source_code" class="form-label">Source Code</label>
-            <input type="text" name="source_code" id="source_code" class="form-control" placeholder="Source Code">
-            <small id="titleHelper " class="text-muted"> Add the name of the Source Code</small>
+        <div class="mb-3">
+            <label for="source_code" class="form-label">source_code</label>
+            <input type="text" name="source_code" id="source_code" class="form-control"
+                placeholder="insert a source_code " aria-describedby="helpId" value="{{ old('source_code', $project) }}">
+            <small id="helpId" class="text-muted">insert a project source_code url</small>
         </div>
+
         <button type="submit" class=" m-3 btn btn-primary">Create</button>
     </form>
 @endsection
